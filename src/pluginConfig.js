@@ -3,7 +3,7 @@ module.exports = {
   addonType: "plugin",
   id: "skymen_mask",
   name: "Clipping Mask",
-  version: "1.0.0.3",
+  version: "1.0.0.4",
   category:
     // "3d",
     // "data-and-storage",
@@ -132,8 +132,8 @@ module.exports = {
       options: {
         initialValue: true,
       },
-      name: "Start",
-      desc: "Start",
+      name: "Start Clipping",
+      desc: "Enable to start clipping. To prevent rendering issues, you need a second mask with this to off to stop clipping at a higher Z index.",
     },
     {
       type: "check",
@@ -142,7 +142,7 @@ module.exports = {
         initialValue: true,
       },
       name: "Visible",
-      desc: "Visible",
+      desc: "Enable to make the mask visible. When invisible, the mask will not clip.",
     },
     {
       type: "float",
@@ -275,9 +275,9 @@ module.exports = {
           value: "true",
         },
       ],
-      listName: "Set Is Start",
-      displayText: "Set Is Start {0}",
-      description: "Set Is Start",
+      listName: "Start clipping",
+      displayText: "Set Start clipping to {0}",
+      description: "Set whether to start clipping or end clipping",
     },
   },
   Cnds: {
@@ -382,9 +382,9 @@ module.exports = {
       autoScriptInterface: true,
       highlight: true,
       params: [],
-      listName: "Is Start",
-      displayText: "Is Start",
-      description: "Is Start",
+      listName: "Is Clipping",
+      displayText: "Check if clipping is enabled",
+      description: "Check if clipping is enabled",
     },
   },
   Exps: {
