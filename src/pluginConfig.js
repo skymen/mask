@@ -3,7 +3,7 @@ module.exports = {
   addonType: "plugin",
   id: "skymen_mask",
   name: "mask",
-  version: "1.0.0.0",
+  version: "1.0.0.1",
   category:
     // "3d",
     // "data-and-storage",

@@ -24,12 +24,15 @@ function getInstanceJs(parentClass, scriptInterface, addonTriggers, C3) {
       if (this.isStart) {
         let layer = wi.GetLayer();
         let pos = layer.LayerToCanvasCss(wi.GetX(), wi.GetY());
-        let size = layer.LayerToCanvasCss(wi.GetWidth(), wi.GetHeight());
+        let size = layer.LayerToCanvasCss(
+          wi.GetX() + wi.GetWidth(),
+          wi.GetY() + wi.GetHeight()
+        );
         renderer.SetScissorRect(
           pos[0] * devicePixelRatio,
           pos[1] * devicePixelRatio,
-          size[0] * devicePixelRatio,
-          size[1] * devicePixelRatio
+          (size[0] - pos[0]) * devicePixelRatio,
+          (size[1] - pos[1]) * devicePixelRatio
         );
       } else renderer.RemoveScissorRect();
     }
