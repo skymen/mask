@@ -2,8 +2,8 @@
 module.exports = {
   addonType: "plugin",
   id: "skymen_mask",
-  name: "mask",
-  version: "1.0.0.2",
+  name: "Clipping Mask",
+  version: "1.0.0.3",
   category:
     // "3d",
     // "data-and-storage",
@@ -18,7 +18,7 @@ module.exports = {
   author: "reddog, skymen",
   website: "https://www.construct.net",
   documentation: "https://www.construct.net",
-  description: "Description",
+  description: "A Clipping mask addon for Construct 3",
   // addonUrl: "https://www.construct.net/en/make-games/addons/####/XXXX", // displayed in auto-generated docs
   // githubUrl: "https://github.com/skymen/XXXX", // displays latest release version in auto-generated docs
   // icon: "icon.svg", // defaults to "icon.svg" if omitted
