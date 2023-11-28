@@ -47,6 +47,7 @@ The main files you may want to look at would be instance.js and scriptInterface.
 ## Actions
 | Action | Description | Params
 | --- | --- | --- |
+| Set Is Start | Set Is Start | Is Start             *(boolean)* <br> |
 
 
 ---
