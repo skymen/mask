@@ -15,30 +15,28 @@ function getInstanceJs(parentClass, scriptInterface, addonTriggers, C3) {
 
     SaveToJson() {
       return {
-        // data to be saved for savegames
+        isStart: this.isStart,
       };
+    }
+
+    LoadFromJson(o) {
+      this.isStart = o.isStart;
     }
 
     Draw(renderer) {
       const wi = this.GetWorldInfo();
       if (this.isStart) {
         let layer = wi.GetLayer();
-        let pos = layer.LayerToCanvasCss(wi.GetX(), wi.GetY());
-        let size = layer.LayerToCanvasCss(
-          wi.GetX() + wi.GetWidth(),
-          wi.GetY() + wi.GetHeight()
-        );
+        let box = wi.GetBoundingBox();
+        let start = layer.LayerToCanvasCss(box.getLeft(), box.getTop());
+        let end = layer.LayerToCanvasCss(box.getRight(), box.getBottom());
         renderer.SetScissorRect(
-          pos[0] * devicePixelRatio,
-          pos[1] * devicePixelRatio,
-          (size[0] - pos[0]) * devicePixelRatio,
-          (size[1] - pos[1]) * devicePixelRatio
+          start[0] * devicePixelRatio,
+          start[1] * devicePixelRatio,
+          (end[0] - start[0]) * devicePixelRatio,
+          (end[1] - start[1]) * devicePixelRatio
         );
       } else renderer.RemoveScissorRect();
-    }
-
-    LoadFromJson(o) {
-      // load state for savegames
     }
 
     Trigger(method) {
@@ -51,6 +49,10 @@ function getInstanceJs(parentClass, scriptInterface, addonTriggers, C3) {
 
     GetScriptInterfaceClass() {
       return scriptInterface;
+    }
+
+    _SetIsStart(isStart) {
+      this.isStart = isStart;
     }
 
     _IsStart() {

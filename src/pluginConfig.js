@@ -3,7 +3,7 @@ module.exports = {
   addonType: "plugin",
   id: "skymen_mask",
   name: "mask",
-  version: "1.0.0.1",
+  version: "1.0.0.2",
   category:
     // "3d",
     // "data-and-storage",
@@ -261,6 +261,24 @@ module.exports = {
       description: "This is a sample action",
     },
     */
+    SetIsStart: {
+      category: "general",
+      forward: "_SetIsStart",
+      autoScriptInterface: true,
+      highlight: true,
+      params: [
+        {
+          id: "isStart",
+          name: "Is Start",
+          desc: "Is Start",
+          type: "boolean",
+          value: "true",
+        },
+      ],
+      listName: "Set Is Start",
+      displayText: "Set Is Start {0}",
+      description: "Set Is Start",
+    },
   },
   Cnds: {
     /*
@@ -361,7 +379,7 @@ module.exports = {
     IsStart: {
       category: "general",
       forward: "_IsStart",
-      autoScriptInterface: false,
+      autoScriptInterface: true,
       highlight: true,
       params: [],
       listName: "Is Start",
