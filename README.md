@@ -37,8 +37,8 @@ The main files you may want to look at would be instance.js and scriptInterface.
 ## Properties
 | Property Name | Description | Type |
 | --- | --- | --- |
-| Start | Start | check |
-| Visible | Visible | check |
+| Start Clipping | Enable to start clipping. To prevent rendering issues, you need a second mask with this to off to stop clipping at a higher Z index. | check |
+| Visible | Enable to make the mask visible. When invisible, the mask will not clip. | check |
 | Origin X | X Coordinate (0-1) | float |
 | Origin Y | Y Coordinate (0-1) | float |
 
@@ -47,14 +47,14 @@ The main files you may want to look at would be instance.js and scriptInterface.
 ## Actions
 | Action | Description | Params
 | --- | --- | --- |
-| Set Is Start | Set Is Start | Is Start             *(boolean)* <br> |
+| Start clipping | Set whether to start clipping or end clipping | Is Start             *(boolean)* <br> |
 
 
 ---
 ## Conditions
 | Condition | Description | Params
 | --- | --- | --- |
-| Is Start | Is Start |  |
+| Is Clipping | Check if clipping is enabled |  |
 
 
 ---
