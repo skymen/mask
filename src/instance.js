@@ -8,6 +8,7 @@ function getInstanceJs(parentClass, scriptInterface, addonTriggers, C3) {
         this._worldInfo.SetVisible(properties[1]);
       }
 
+      this.MaybeMonkeyPatchRect();
       this._StartTicking();
     }
 
@@ -35,7 +36,28 @@ function getInstanceJs(parentClass, scriptInterface, addonTriggers, C3) {
       this.isStart = o.isStart;
     }
 
+    MaybeMonkeyPatchRect() {
+      const renderer = this._runtime.GetRenderer();
+      if (!renderer || renderer.__skymen_clippingMaskPatch) return;
+      this.oldSetScissorRect = renderer.SetScissorRect.bind(renderer);
+      this.oldRemoveScissorRect = renderer.RemoveScissorRect.bind(renderer);
+      renderer.SetScissorRect = (x, y, w, h, rtHeight = 0, force = false) => {
+        if (force || !renderer.__skymen_clippingMaskForce) {
+          this.oldSetScissorRect(x, y, w, h, rtHeight);
+          renderer.__skymen_clippingMaskForce = force;
+        }
+      };
+      renderer.RemoveScissorRect = (force = false) => {
+        if (force || !renderer.__skymen_clippingMaskForce) {
+          this.oldRemoveScissorRect();
+          renderer.__skymen_clippingMaskForce = !force;
+        }
+      };
+      renderer.__skymen_clippingMaskPatch = true;
+    }
+
     Draw(renderer) {
+      this.MaybeMonkeyPatchRect();
       const wi = this.GetWorldInfo();
       if (this.isStart) {
         let layer = wi.GetLayer();
@@ -52,9 +74,11 @@ function getInstanceJs(parentClass, scriptInterface, addonTriggers, C3) {
           start[0] * devicePixelRatio,
           start[1] * devicePixelRatio,
           (end[0] - start[0]) * devicePixelRatio,
-          (end[1] - start[1]) * devicePixelRatio
+          (end[1] - start[1]) * devicePixelRatio,
+          0,
+          true
         );
-      } else renderer.RemoveScissorRect();
+      } else renderer.RemoveScissorRect(true);
     }
 
     Trigger(method) {

@@ -3,7 +3,7 @@ module.exports = {
   addonType: "plugin",
   id: "skymen_mask",
   name: "Clipping Mask",
-  version: "1.0.0.6",
+  version: "1.0.0.7",
   category:
     // "3d",
     // "data-and-storage",
