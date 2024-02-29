@@ -9,17 +9,13 @@ function getInstanceJs(parentClass, scriptInterface, addonTriggers, C3) {
       }
 
       this.MaybeMonkeyPatchRect();
-      this._StartTicking();
-    }
+      // this._StartTicking();
 
-    Tick() {
       const wi = this.GetWorldInfo();
-      const layer = wi.GetLayer();
-      const viewport = layer.GetViewport();
-      const box = wi.GetBoundingBox();
-
-      // set bounding box to the viewport
-      box.copy(viewport);
+      const oldGetBBox = wi.GetBoundingBox.bind(wi);
+      wi.GetBoundingBox = () => {
+        return wi.GetLayer().GetViewport();
+      };
     }
 
     Release() {
