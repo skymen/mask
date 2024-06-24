@@ -67,10 +67,10 @@ function getInstanceJs(parentClass, scriptInterface, addonTriggers, C3) {
           y + (1 - wi._oy) * h
         );
         renderer.SetScissorRect(
-          start[0] * devicePixelRatio,
-          start[1] * devicePixelRatio,
-          (end[0] - start[0]) * devicePixelRatio,
-          (end[1] - start[1]) * devicePixelRatio,
+          start[0],
+          start[1],
+          end[0] - start[0],
+          end[1] - start[1],
           0,
           true
         );
