@@ -61,8 +61,8 @@ function getInstanceJs(parentClass, scriptInterface, addonTriggers, C3) {
         const y = wi.GetY();
         const w = wi.GetWidth();
         const h = wi.GetHeight();
-        let start = layer.LayerToCanvasCss(x - wi._ox * w, y - wi._oy * h);
-        let end = layer.LayerToCanvasCss(
+        let start = layer.LayerToDrawSurface(x - wi._ox * w, y - wi._oy * h);
+        let end = layer.LayerToDrawSurface(
           x + (1 - wi._ox) * w,
           y + (1 - wi._oy) * h
         );
